@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Search, ChevronDown, ChevronUp, MapPin, Building, Calendar } from 'lucide-react';
+import AlumniCareerDetailScreen from './AlumniCareerDetailScreen';
 
 const AlumniCareerScreen = () => {
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [selectedJobType, setSelectedJobType] = useState('');
+  const [selectedAlumni, setSelectedAlumni] = useState(null);
 
   const departments = [
     '全て',
@@ -41,7 +43,16 @@ const AlumniCareerScreen = () => {
       jobType: '公務員',
       image: '/api/placeholder/320/180',
       headline: 'テクノロジーで社会を変える',
-      description: '国際協力の分野で活躍。難民支援プログラムの企画・運営を担当。'
+      description: '国際協力の分野で活躍。難民支援プログラムの企画・運営を担当しています。世界中の難民の方々に寄り添い、彼らの権利を守るために日々奔走しています。\n\n東洋英和での学びが、今の私の原点です。多様な価値観を尊重し、弱い立場の人々に寄り添う姿勢は、在学中に培われました。',
+      website: 'https://example.com/tanaka',
+      facebook: 'https://facebook.com/tanaka',
+      linkedin: 'https://linkedin.com/in/tanaka',
+      careerPath: [
+        { period: '1995-1998', position: 'NGO職員', company: '国際協力NGO' },
+        { period: '1998-2005', position: 'プログラムオフィサー', company: 'JICA' },
+        { period: '2005-現在', position: '上級プログラムオフィサー', company: 'UNHCR' }
+      ],
+      message: '国際協力の分野は決して華やかではありませんが、誰かの人生を支えることができる、やりがいのある仕事です。在学中に様々なことに挑戦し、自分の「やりたいこと」を見つけてください。'
     },
     {
       id: 2,
@@ -54,7 +65,15 @@ const AlumniCareerScreen = () => {
       jobType: '医療・福祉',
       image: '/api/placeholder/320/180',
       headline: '患者さんに寄り添う医療を',
-      description: '小児医療の専門医として、子どもたちの健康を守る仕事に従事。'
+      description: '小児医療の専門医として、子どもたちの健康を守る仕事に従事しています。特に先天性心疾患の治療に力を入れており、多くの子どもたちの命を救ってきました。\n\n医師として最も大切にしているのは、患者さんとそのご家族に寄り添うこと。東洋英和で学んだ「愛と奉仕」の精神が、今の私の医療の基盤となっています。',
+      website: 'https://example.com/sato',
+      linkedin: 'https://linkedin.com/in/sato',
+      careerPath: [
+        { period: '2000-2006', position: '医学部学生', company: '東京大学医学部' },
+        { period: '2006-2010', position: '研修医・レジデント', company: '東京大学医学部附属病院' },
+        { period: '2010-現在', position: '小児科医', company: '東京大学医学部附属病院' }
+      ],
+      message: '医師の道は長く厳しいですが、患者さんの笑顔を見るたびに、この仕事を選んでよかったと思います。夢を持ち続けることの大切さを、後輩の皆さんに伝えたいです。'
     },
     {
       id: 3,
@@ -67,7 +86,15 @@ const AlumniCareerScreen = () => {
       jobType: 'メディア・広告',
       image: '/api/placeholder/320/180',
       headline: '言葉の力で心を動かす',
-      description: 'ドキュメンタリー番組の制作を手がけ、社会問題を伝える番組を制作。'
+      description: 'ドキュメンタリー番組の制作を手がけ、社会問題を伝える番組を制作しています。特に環境問題や貧困問題をテーマにした番組を多く手掛けてきました。\n\n文学部で学んだ批評的思考力と表現力が、今の仕事に大いに役立っています。',
+      facebook: 'https://facebook.com/yamada',
+      linkedin: 'https://linkedin.com/in/yamada',
+      careerPath: [
+        { period: '2005-2008', position: 'AD（アシスタントディレクター）', company: 'NHK' },
+        { period: '2008-2015', position: 'ディレクター', company: 'NHK' },
+        { period: '2015-現在', position: 'プロデューサー', company: 'NHK' }
+      ],
+      message: 'メディアの力は大きいです。その力を社会のために使えることに、誇りを感じています。皆さんも自分の得意なことを活かして、社会に貢献してください。'
     },
     {
       id: 4,
@@ -80,7 +107,16 @@ const AlumniCareerScreen = () => {
       jobType: '起業・経営',
       image: '/api/placeholder/320/180',
       headline: '正義を追求し続ける',
-      description: 'AIを活用した教育サービスを提供するスタートアップを創業。'
+      description: 'AIを活用した教育サービスを提供するスタートアップを創業しました。「すべての子どもに質の高い教育を」をミッションに、テクノロジーで教育格差の解消に取り組んでいます。\n\n起業は簡単ではありませんが、自分の信念を貫き通せることに大きなやりがいを感じています。',
+      website: 'https://example.com/suzuki',
+      facebook: 'https://facebook.com/suzuki',
+      linkedin: 'https://linkedin.com/in/suzuki',
+      careerPath: [
+        { period: '2010-2015', position: 'ソフトウェアエンジニア', company: 'Google Japan' },
+        { period: '2015-2018', position: 'プロダクトマネージャー', company: 'Google Japan' },
+        { period: '2018-現在', position: 'CEO・創業者', company: 'テックイノベーション株式会社' }
+      ],
+      message: '失敗を恐れず、挑戦し続けてください。東洋英和で培った「Be a Messenger of Peace」の精神を胸に、世界を変える一歩を踏み出しましょう。'
     },
     {
       id: 5,
@@ -92,7 +128,14 @@ const AlumniCareerScreen = () => {
       location: '東京',
       jobType: '教育・研究',
       image: '/api/placeholder/80/80',
-      description: '母校で英語教師として勤務。国際教育プログラムの開発にも携わる。'
+      description: '母校で英語教師として勤務しています。国際教育プログラムの開発にも携わり、生徒たちのグローバルな視野を育むことに力を入れています。\n\n自分が受けた素晴らしい教育を、今度は後輩たちに還元できることに喜びを感じています。',
+      website: 'https://example.com/takahashi',
+      careerPath: [
+        { period: '2008-2010', position: '大学院生', company: '上智大学大学院' },
+        { period: '2010-2015', position: '英語教師', company: '私立中高一貫校' },
+        { period: '2015-現在', position: '英語教師', company: '東洋英和女学院高等部' }
+      ],
+      message: '教育は人を育てる尊い仕事です。母校で教えられることを誇りに思っています。在校生の皆さんの成長を楽しみにしています。'
     },
     {
       id: 6,
@@ -104,7 +147,14 @@ const AlumniCareerScreen = () => {
       location: '東京',
       jobType: 'その他',
       image: '/api/placeholder/80/80',
-      description: '企業の戦略立案や組織改革をサポートするコンサルティング業務。'
+      description: '企業の戦略立案や組織改革をサポートするコンサルティング業務に従事しています。様々な業界のクライアントと共に、ビジネスの課題解決に取り組んでいます。\n\n論理的思考力とコミュニケーション能力が求められる仕事ですが、東洋英和での学びが大いに役立っています。',
+      linkedin: 'https://linkedin.com/in/nakamura',
+      careerPath: [
+        { period: '2012-2014', position: 'ビジネスアナリスト', company: 'アクセンチュア' },
+        { period: '2014-2018', position: 'コンサルタント', company: 'ボストン コンサルティング グループ' },
+        { period: '2018-現在', position: 'シニアコンサルタント', company: 'マッキンゼー・アンド・カンパニー' }
+      ],
+      message: 'コンサルティングの仕事は、常に学び続けることが求められます。好奇心を持ち続け、様々なことに挑戦してください。'
     }
   ];
 
@@ -214,7 +264,11 @@ const AlumniCareerScreen = () => {
         {/* Alumni Grid (2列カード) */}
         <div className="grid grid-cols-2 gap-4">
           {filteredAlumni.map((alumni) => (
-            <div key={alumni.id} className="bg-white rounded-xl card-shadow overflow-hidden">
+            <div
+              key={alumni.id}
+              className="bg-white rounded-xl card-shadow overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={() => setSelectedAlumni(alumni)}
+            >
               <div className="h-28 w-full bg-gray-200 overflow-hidden">
                 <img src={alumni.image} alt={alumni.name} className="w-full h-full object-cover" />
               </div>
@@ -243,6 +297,14 @@ const AlumniCareerScreen = () => {
           </div>
         )}
       </div>
+
+      {/* Detail Modal */}
+      {selectedAlumni && (
+        <AlumniCareerDetailScreen
+          alumni={selectedAlumni}
+          onClose={() => setSelectedAlumni(null)}
+        />
+      )}
     </div>
   );
 };
