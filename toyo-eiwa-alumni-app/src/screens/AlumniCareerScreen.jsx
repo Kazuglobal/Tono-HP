@@ -1,33 +1,65 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, ChevronUp, MapPin, Building, Calendar } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, MapPin, Building, Calendar, Plus, X } from 'lucide-react';
 import AlumniCareerDetailScreen from './AlumniCareerDetailScreen';
 
 const AlumniCareerScreen = () => {
   const [searchExpanded, setSearchExpanded] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('');
-  const [selectedJobType, setSelectedJobType] = useState('');
+  const [selectedDetailedJobType, setSelectedDetailedJobType] = useState('');
+  const [selectedJobCategory, setSelectedJobCategory] = useState('');
   const [selectedAlumni, setSelectedAlumni] = useState(null);
+  const [showForm, setShowForm] = useState(false);
 
-  const departments = [
+  const detailedJobTypes = [
     '全て',
-    '国際社会学部',
-    '人間科学部',
-    '文学部',
-    '経済学部',
-    '教育学部'
+    '医師・看護師',
+    '教師・教育関係',
+    'エンジニア・プログラマー',
+    'デザイナー・クリエイター',
+    '営業・マーケティング',
+    'コンサルタント',
+    '公務員・公的機関',
+    '金融・保険',
+    '商社・貿易',
+    'メディア・広告・出版',
+    '法律・弁護士',
+    '会計・税理士',
+    '建築・建設',
+    '製造業・技術者',
+    '小売・サービス業',
+    '飲食・ホテル',
+    '農業・林業・漁業',
+    '芸能・エンターテイメント',
+    'スポーツ・フィットネス',
+    'NPO・NGO',
+    '起業・経営者',
+    'フリーランス',
+    'その他'
   ];
 
-  const jobTypes = [
+  const jobCategories = [
     '全て',
     '教育・研究',
     '医療・福祉',
     '金融・保険',
     '商社・貿易',
     'IT・通信',
-    'メディア・広告',
-    '公務員',
-    '起業・経営',
+    'メディア・広告・出版',
+    '公務員・公的機関',
+    '法律・法務',
+    '会計・税務',
+    '建築・建設・不動産',
+    '製造業・技術',
+    '小売・サービス業',
+    '飲食・ホテル・観光',
+    '農業・林業・漁業',
+    '芸能・エンターテイメント',
+    'スポーツ・フィットネス',
+    'NPO・NGO・社会貢献',
+    '起業・経営・フリーランス',
+    'コンサルティング',
+    '営業・マーケティング',
+    '人事・総務・事務',
     'その他'
   ];
 
@@ -40,7 +72,8 @@ const AlumniCareerScreen = () => {
       jobTitle: '国際機関職員',
       company: '国連難民高等弁務官事務所',
       location: 'ジュネーブ',
-      jobType: '公務員',
+      jobType: 'NPO・NGO・社会貢献',
+      detailedJobType: 'NPO・NGO',
       image: '/api/placeholder/320/180',
       headline: 'テクノロジーで社会を変える',
       description: '国際協力の分野で活躍。難民支援プログラムの企画・運営を担当しています。世界中の難民の方々に寄り添い、彼らの権利を守るために日々奔走しています。\n\n東洋英和での学びが、今の私の原点です。多様な価値観を尊重し、弱い立場の人々に寄り添う姿勢は、在学中に培われました。',
@@ -63,6 +96,7 @@ const AlumniCareerScreen = () => {
       company: '東京大学医学部附属病院',
       location: '東京',
       jobType: '医療・福祉',
+      detailedJobType: '医師・看護師',
       image: '/api/placeholder/320/180',
       headline: '患者さんに寄り添う医療を',
       description: '小児医療の専門医として、子どもたちの健康を守る仕事に従事しています。特に先天性心疾患の治療に力を入れており、多くの子どもたちの命を救ってきました。\n\n医師として最も大切にしているのは、患者さんとそのご家族に寄り添うこと。東洋英和で学んだ「愛と奉仕」の精神が、今の私の医療の基盤となっています。',
@@ -84,6 +118,7 @@ const AlumniCareerScreen = () => {
       company: 'NHK',
       location: '東京',
       jobType: 'メディア・広告',
+      detailedJobType: 'メディア・広告・出版',
       image: '/api/placeholder/320/180',
       headline: '言葉の力で心を動かす',
       description: 'ドキュメンタリー番組の制作を手がけ、社会問題を伝える番組を制作しています。特に環境問題や貧困問題をテーマにした番組を多く手掛けてきました。\n\n文学部で学んだ批評的思考力と表現力が、今の仕事に大いに役立っています。',
@@ -104,7 +139,8 @@ const AlumniCareerScreen = () => {
       jobTitle: 'IT企業CEO',
       company: 'テックイノベーション株式会社',
       location: '東京',
-      jobType: '起業・経営',
+      jobType: '起業・経営・フリーランス',
+      detailedJobType: '起業・経営者',
       image: '/api/placeholder/320/180',
       headline: '正義を追求し続ける',
       description: 'AIを活用した教育サービスを提供するスタートアップを創業しました。「すべての子どもに質の高い教育を」をミッションに、テクノロジーで教育格差の解消に取り組んでいます。\n\n起業は簡単ではありませんが、自分の信念を貫き通せることに大きなやりがいを感じています。',
@@ -127,6 +163,7 @@ const AlumniCareerScreen = () => {
       company: '東洋英和女学院高等部',
       location: '東京',
       jobType: '教育・研究',
+      detailedJobType: '教師・教育関係',
       image: '/api/placeholder/80/80',
       description: '母校で英語教師として勤務しています。国際教育プログラムの開発にも携わり、生徒たちのグローバルな視野を育むことに力を入れています。\n\n自分が受けた素晴らしい教育を、今度は後輩たちに還元できることに喜びを感じています。',
       website: 'https://example.com/takahashi',
@@ -145,7 +182,8 @@ const AlumniCareerScreen = () => {
       jobTitle: '外資系コンサルタント',
       company: 'マッキンゼー・アンド・カンパニー',
       location: '東京',
-      jobType: 'その他',
+      jobType: 'コンサルティング',
+      detailedJobType: 'コンサルタント',
       image: '/api/placeholder/80/80',
       description: '企業の戦略立案や組織改革をサポートするコンサルティング業務に従事しています。様々な業界のクライアントと共に、ビジネスの課題解決に取り組んでいます。\n\n論理的思考力とコミュニケーション能力が求められる仕事ですが、東洋英和での学びが大いに役立っています。',
       linkedin: 'https://linkedin.com/in/nakamura',
@@ -164,13 +202,13 @@ const AlumniCareerScreen = () => {
       alumni.jobTitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
       alumni.company.toLowerCase().includes(searchQuery.toLowerCase());
     
-    const matchesDepartment = selectedDepartment === '' || selectedDepartment === '全て' || 
-      alumni.department === selectedDepartment;
+    const matchesDetailedJobType = selectedDetailedJobType === '' || selectedDetailedJobType === '全て' || 
+      alumni.detailedJobType === selectedDetailedJobType;
     
-    const matchesJobType = selectedJobType === '' || selectedJobType === '全て' || 
-      alumni.jobType === selectedJobType;
+    const matchesJobCategory = selectedJobCategory === '' || selectedJobCategory === '全て' || 
+      alumni.jobType === selectedJobCategory;
     
-    return matchesSearch && matchesDepartment && matchesJobType;
+    return matchesSearch && matchesDetailedJobType && matchesJobCategory;
   });
 
   return (
@@ -179,6 +217,25 @@ const AlumniCareerScreen = () => {
         <h1 className="text-xl font-mincho font-semibold wine-red mb-6">
           卒業生キャリア紹介
         </h1>
+
+        {/* Career Registration Button */}
+        <div className="bg-white rounded-lg card-shadow mb-6 p-4">
+          <div className="text-center">
+            <h2 className="text-sm font-medium text-gray-900 mb-3">
+              キャリア情報登録
+            </h2>
+            <p className="text-xs text-gray-600 mb-4">
+              あなたのキャリアを同窓生に紹介しませんか？
+            </p>
+            <button
+              onClick={() => setShowForm(true)}
+              className="bg-[#1976D2] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1565C0] transition-colors flex items-center justify-center mx-auto space-x-2"
+            >
+              <Plus size={20} />
+              <span>キャリアを登録する</span>
+            </button>
+          </div>
+        </div>
 
         {/* Search Accordion */}
         <div className="bg-white rounded-lg card-shadow mb-6 overflow-hidden">
@@ -215,37 +272,37 @@ const AlumniCareerScreen = () => {
                 />
               </div>
 
-              {/* Department Filter */}
+              {/* Detailed Job Type Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  学部
+                  詳細な職種
                 </label>
                 <select
-                  value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
+                  value={selectedDetailedJobType}
+                  onChange={(e) => setSelectedDetailedJobType(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-transparent"
                 >
-                  {departments.map((dept) => (
-                    <option key={dept} value={dept === '全て' ? '' : dept}>
-                      {dept}
+                  {detailedJobTypes.map((type) => (
+                    <option key={type} value={type === '全て' ? '' : type}>
+                      {type}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Job Type Filter */}
+              {/* Job Category Filter */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  職種
+                  職種カテゴリ
                 </label>
                 <select
-                  value={selectedJobType}
-                  onChange={(e) => setSelectedJobType(e.target.value)}
+                  value={selectedJobCategory}
+                  onChange={(e) => setSelectedJobCategory(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-transparent"
                 >
-                  {jobTypes.map((type) => (
-                    <option key={type} value={type === '全て' ? '' : type}>
-                      {type}
+                  {jobCategories.map((category) => (
+                    <option key={category} value={category === '全て' ? '' : category}>
+                      {category}
                     </option>
                   ))}
                 </select>
@@ -304,6 +361,42 @@ const AlumniCareerScreen = () => {
           alumni={selectedAlumni}
           onClose={() => setSelectedAlumni(null)}
         />
+      )}
+
+      {/* Career Registration Form Modal */}
+      {showForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-2xl mx-auto shadow-2xl max-h-[90vh] overflow-y-auto">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowForm(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
+            >
+              <X size={24} />
+            </button>
+
+            {/* Form Content */}
+            <div>
+              <h2 className="text-lg font-mincho font-semibold text-[#1976D2] mb-4 text-center">
+                キャリア情報登録フォーム
+              </h2>
+              <div className="bg-gray-50 rounded-lg p-2">
+                <iframe 
+                  src="https://keen-whale-2c2.notion.site/ebd/2826e2231c40807aa844e554e4404588" 
+                  width="100%" 
+                  height="500" 
+                  frameBorder="0" 
+                  allowFullScreen
+                  className="rounded-md"
+                  style={{ transform: 'scale(0.8)', transformOrigin: 'top left', width: '125%', height: '625px' }}
+                />
+              </div>
+              <p className="text-xs text-gray-500 mt-3 text-center">
+                キャリア情報を登録された方はこちらから申請ください
+              </p>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
