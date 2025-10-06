@@ -590,16 +590,19 @@ const AlumniCareerScreen = () => {
 
             <div>
               <h2 className="text-lg font-mincho font-semibold text-[#1976D2] mb-4 text-center">卒業生登録フォーム</h2>
-              <div className="bg-gray-50 rounded-lg p-2">
-                <iframe
-                  src="https://keen-whale-2c2.notion.site/ebd/2826e2231c40807aa844e554e4404588"
-                  width="100%"
-                  height="500"
-                  frameBorder="0"
-                  allowFullScreen
-                  className="rounded-md"
-                  style={{ transform: 'scale(0.8)', transformOrigin: 'top left', width: '125%', height: '625px' }}
-                />
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-4">
+                  卒業生登録フォームは外部サイトで開きます
+                </p>
+                <a
+                  href="https://keen-whale-2c2.notion.site/2826e2231c40807aa844e554e4404588?pvs=105"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-[#1976D2] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1565C0] transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  卒業生登録フォームを開く
+                </a>
               </div>
               <p className="text-xs text-gray-500 mt-3 text-center">
                 卒業生登録が完了すると事務局よりご連絡いたします。

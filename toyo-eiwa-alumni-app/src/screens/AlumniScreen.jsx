@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AlumniCareerScreen from './AlumniCareerScreen';
 import StoreInfoScreen from './StoreInfoScreen';
-import { Users, Heart, MessageCircle, X } from 'lucide-react';
+import { Users, Heart, MessageCircle, X, ExternalLink } from 'lucide-react';
 
 const AlumniScreen = ({ onNavigate }) => {
   const [activeTab, setActiveTab] = useState('career');
@@ -106,21 +106,21 @@ const AlumniScreen = ({ onNavigate }) => {
 
               {/* Registration Form */}
               <div className="mt-3 pt-3 border-t border-gray-100">
-                <h3 className="text-xs font-normal text-gray-700 mb-1 text-center">
+                <h3 className="text-xs font-normal text-gray-700 mb-2 text-center">
                   卒業生登録フォーム
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-1">
-                  <iframe 
-                    src="https://keen-whale-2c2.notion.site/ebd/2826e2231c40807aa844e554e4404588" 
-                    width="100%" 
-                    height="300" 
-                    frameBorder="0" 
-                    allowFullScreen
-                    className="rounded-md"
-                    style={{ transform: 'scale(0.7)', transformOrigin: 'top left', width: '143%', height: '428px' }}
-                  />
+                <div className="text-center">
+                  <a
+                    href="https://keen-whale-2c2.notion.site/2826e2231c40807aa844e554e4404588?pvs=105"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center bg-[#1976D2] text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-[#1565C0] transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    卒業生登録フォームを開く
+                  </a>
                 </div>
-                <p className="text-xs text-gray-500 mt-1 text-center">
+                <p className="text-xs text-gray-500 mt-2 text-center">
                   登録をしたひとはこちらから申請ください
                 </p>
               </div>
