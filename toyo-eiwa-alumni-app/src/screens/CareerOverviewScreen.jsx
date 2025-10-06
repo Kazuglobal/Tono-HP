@@ -267,39 +267,6 @@ const CareerOverviewScreen = ({ onNavigate }) => {
           )}
         </section>
 
-        {/* 同窓会による支援 */}
-        <section>
-          <div className="bg-gradient-to-r from-wine-red to-purple-700 text-white rounded-lg p-6">
-            <h2 className="text-lg font-mincho font-semibold mb-3 flex items-center">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              同窓会による進路支援
-            </h2>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                <p>奨学金制度による経済的支援</p>
-              </div>
-              <div className="flex items-start space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                <p>卒業生による職業講話・進路相談</p>
-              </div>
-              <div className="flex items-start space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                <p>インターンシップ受け入れ企業の紹介</p>
-              </div>
-              <div className="flex items-start space-x-2">
-                <div className="w-2 h-2 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                <p>就職活動における面接指導</p>
-              </div>
-            </div>
-            <button 
-              onClick={() => onNavigate('contact')}
-              className="mt-4 bg-white text-wine-red px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-            >
-              進路支援についてお問い合わせ
-            </button>
-          </div>
-        </section>
       </div>
     </div>
   );
