@@ -1,113 +1,159 @@
 import React from 'react';
-import { Calendar, Users, Heart, Award } from 'lucide-react';
+import { Calendar, Users, Heart, Award, BookOpen, MapPin } from 'lucide-react';
 
 const AlumniActivitiesScreen = ({ onNavigate }) => {
-  const activities = [
+  const annualSchedule = [
     {
       id: 1,
-      title: '年次総会',
-      date: '毎年5月',
-      description: '同窓生が一堂に会し、活動報告や今後の方針を決定します。',
+      title: '入学式',
+      date: '4月7日',
+      description: '新入生を迎える入学式が行われます。',
       icon: <Users className="w-6 h-6" />,
-      participants: '約200名'
+      type: '学校行事'
     },
     {
       id: 2,
-      title: '地域別懇親会',
-      date: '年2回',
-      description: '各地域の同窓生が集まり、親睦を深める懇親会を開催しています。',
+      title: '同窓会三役会',
+      date: '4月30日',
+      description: '同窓会の三役による会議が開催されます。',
       icon: <Heart className="w-6 h-6" />,
-      participants: '各地域30-50名'
+      type: '同窓会活動'
     },
     {
       id: 3,
-      title: '母校支援活動',
-      date: '通年',
-      description: '奨学金制度の運営や学校施設の整備支援を行っています。',
+      title: '開校記念日',
+      date: '5月17日',
+      description: '学校の開校記念日を祝います。',
       icon: <Award className="w-6 h-6" />,
-      participants: '全同窓生'
+      type: '学校行事'
     },
     {
       id: 4,
-      title: '文化祭協力',
-      date: '毎年10月',
-      description: '母校の文化祭に協力し、模擬店の運営や展示を行います。',
+      title: '年度幹事会・総会の在り方協議会',
+      date: '5月28日',
+      description: '年度幹事会と総会の在り方について協議します。',
       icon: <Calendar className="w-6 h-6" />,
-      participants: '約50名'
+      type: '同窓会活動'
+    },
+    {
+      id: 5,
+      title: '同窓会総会幹事会',
+      date: '5月～8月（1回～4回）',
+      description: '同窓会総会に向けた幹事会を複数回開催します。',
+      icon: <Users className="w-6 h-6" />,
+      type: '同窓会活動'
+    },
+    {
+      id: 6,
+      title: '同窓会報第1号発行',
+      date: '7月19日',
+      description: '年度最初の同窓会報を発行します。',
+      icon: <BookOpen className="w-6 h-6" />,
+      type: '同窓会活動'
+    },
+    {
+      id: 7,
+      title: '同窓会総会',
+      date: '8月11日',
+      description: 'たかむろ水光園にて同窓会総会を開催します。',
+      icon: <MapPin className="w-6 h-6" />,
+      type: '同窓会活動',
+      location: 'たかむろ水光園'
+    },
+    {
+      id: 8,
+      title: '盛岡支部総会',
+      date: '9月28日',
+      description: '盛岡支部の総会をアートホテルにて開催します。',
+      icon: <MapPin className="w-6 h-6" />,
+      type: '支部活動',
+      location: 'アートホテル'
+    },
+    {
+      id: 9,
+      title: '首都圏支部総会',
+      date: '11月16日',
+      description: '首都圏支部の総会をホテルラングウッドにて開催します。',
+      icon: <MapPin className="w-6 h-6" />,
+      type: '支部活動',
+      location: 'ホテルラングウッド'
+    },
+    {
+      id: 10,
+      title: '同窓会報第2号発行',
+      date: '2月28日',
+      description: '年度後半の同窓会報を発行します。',
+      icon: <BookOpen className="w-6 h-6" />,
+      type: '同窓会活動'
+    },
+    {
+      id: 11,
+      title: '同窓会入会式',
+      date: '2月28日',
+      description: '新たに卒業する生徒の同窓会入会式を行います。',
+      icon: <Heart className="w-6 h-6" />,
+      type: '同窓会活動'
+    },
+    {
+      id: 12,
+      title: '卒業式',
+      date: '3月1日',
+      description: '卒業生を送る卒業式が行われます。',
+      icon: <Award className="w-6 h-6" />,
+      type: '学校行事'
     }
   ];
 
-  const recentActivities = [
-    {
-      date: '2024年3月15日',
-      title: '令和6年度同窓会総会開催',
-      content: '今年度の総会を開催し、新役員の選出と活動報告を行いました。'
-    },
-    {
-      date: '2024年2月20日',
-      title: '奨学金授与式',
-      content: '優秀な在校生3名に同窓会奨学金を授与いたしました。'
-    },
-    {
-      date: '2024年1月10日',
-      title: '新年懇親会',
-      content: '新年を祝う懇親会を開催し、多くの同窓生が参加しました。'
+  const getTypeColor = (type) => {
+    switch (type) {
+      case '学校行事':
+        return 'bg-blue-100 text-blue-700';
+      case '同窓会活動':
+        return 'bg-red-100 text-red-700';
+      case '支部活動':
+        return 'bg-green-100 text-green-700';
+      default:
+        return 'bg-gray-100 text-gray-700';
     }
-  ];
+  };
 
   return (
     <div className="bg-off-white min-h-screen">
       <div className="px-4 py-6">
-        <h1 className="text-xl font-mincho font-semibold wine-red mb-6">
+        <h1 className="text-xl font-mincho font-semibold text-[#1976D2] mb-6">
           同窓会活動
         </h1>
 
-        {/* 主な活動 */}
+        {/* 年間スケジュール */}
         <section className="mb-8">
-          <h2 className="text-lg font-mincho font-medium wine-red mb-4">主な活動</h2>
-          <div className="grid gap-4">
-            {activities.map((activity) => (
-              <div key={activity.id} className="bg-white rounded-lg p-4 card-shadow">
+          <h2 className="text-lg font-mincho font-medium text-[#1976D2] mb-4">年間スケジュール</h2>
+          <div className="space-y-3">
+            {annualSchedule.map((event) => (
+              <div key={event.id} className="bg-white rounded-lg p-4 card-shadow">
                 <div className="flex items-start space-x-3">
-                  <div className="w-12 h-12 bg-wine-red rounded-full flex items-center justify-center text-white flex-shrink-0">
-                    {activity.icon}
+                  <div className="w-12 h-12 bg-[#1976D2] rounded-full flex items-center justify-center text-white flex-shrink-0">
+                    {event.icon}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-gothic text-base font-medium text-gray-900 mb-1">
-                      {activity.title}
-                    </h3>
-                    <p className="text-sm text-wine-red font-medium mb-2">
-                      開催時期: {activity.date}
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-gothic text-base font-medium text-gray-900">
+                        {event.title}
+                      </h3>
+                      <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium whitespace-nowrap ${getTypeColor(event.type)}`}>
+                        {event.type}
+                      </span>
+                    </div>
+                    <p className="text-sm text-[#1976D2] font-medium mb-2">
+                      {event.date}
                     </p>
                     <p className="text-sm text-gray-600 mb-2">
-                      {activity.description}
+                      {event.description}
                     </p>
-                    <p className="text-xs text-gray-500">
-                      参加者数: {activity.participants}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 最近の活動 */}
-        <section>
-          <h2 className="text-lg font-mincho font-medium wine-red mb-4">最近の活動</h2>
-          <div className="space-y-4">
-            {recentActivities.map((activity, index) => (
-              <div key={index} className="bg-white rounded-lg p-4 card-shadow">
-                <div className="flex items-start space-x-3">
-                  <div className="w-2 h-2 bg-wine-red rounded-full mt-2 flex-shrink-0"></div>
-                  <div className="flex-1">
-                    <p className="text-xs text-gray-500 mb-1">{activity.date}</p>
-                    <h3 className="font-gothic text-sm font-medium text-gray-900 mb-2">
-                      {activity.title}
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      {activity.content}
-                    </p>
+                    {event.location && (
+                      <p className="text-xs text-gray-500">
+                        会場: {event.location}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -117,7 +163,7 @@ const AlumniActivitiesScreen = ({ onNavigate }) => {
 
         {/* 参加のお誘い */}
         <section className="mt-8">
-          <div className="bg-wine-red text-white rounded-lg p-6 text-center">
+          <div className="bg-gradient-to-r from-[#1976D2] to-[#1565C0] text-white rounded-lg p-6 text-center">
             <h2 className="text-lg font-mincho font-semibold mb-3">
               同窓会活動への参加をお待ちしています
             </h2>
@@ -126,7 +172,7 @@ const AlumniActivitiesScreen = ({ onNavigate }) => {
             </p>
             <button 
               onClick={() => onNavigate('contact')}
-              className="bg-white text-wine-red px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              className="bg-white text-[#1976D2] px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
             >
               お問い合わせ
             </button>

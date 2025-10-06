@@ -13,8 +13,20 @@ import AlumniActivitiesScreen from './screens/AlumniActivitiesScreen';
 import ClubReportsScreen from './screens/ClubReportsScreen';
 import CareerOverviewScreen from './screens/CareerOverviewScreen';
 import NewsletterArchiveScreen from './screens/NewsletterArchiveScreen';
+import AdvertisementScreen from './screens/AdvertisementScreen';
 import ContactScreen from './screens/ContactScreen';
 import './App.css';
+
+const ROUTE_TITLES = {
+  'news-list': 'ニュース一覧',
+  shopping: 'ショッピング',
+  'alumni-activities': '同窓会活動',
+  'club-reports': 'クラブ活動報告',
+  'career-overview': 'キャリア情報',
+  'newsletter-archive': '会報アーカイブ',
+  contact: 'お問い合わせ',
+  ads: '広告ギャラリー',
+};
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -55,15 +67,18 @@ function App() {
           return <CareerOverviewScreen onNavigate={handleNavigate} />;
         case 'newsletter-archive':
           return <NewsletterArchiveScreen onNavigate={handleNavigate} />;
+        case 'ads':
+          return <AdvertisementScreen />;
         case 'contact':
           return <ContactScreen onNavigate={handleNavigate} />;
-        case 'news-detail':
+        case 'news-detail': {
           // News detail will be shown as modal, so return the previous screen
           const previousRoute = navigationStack[navigationStack.length - 2];
           if (previousRoute && previousRoute.route === 'news-list') {
             return <NewsListScreen onNavigate={handleNavigate} />;
           }
           return <HomeScreen onNavigate={handleNavigate} />;
+        }
         default:
           // For other routes, show placeholder
           return (
@@ -104,9 +119,9 @@ function App() {
       // Don't show header title for news-detail as it's a modal
       if (currentRoute.route === 'news-detail') {
         const previousRoute = navigationStack[navigationStack.length - 2];
-        return previousRoute ? previousRoute.route : null;
+        return previousRoute ? (ROUTE_TITLES[previousRoute.route] ?? previousRoute.route) : null;
       }
-      return currentRoute.route;
+      return ROUTE_TITLES[currentRoute.route] ?? currentRoute.route;
     }
     return null;
   };
@@ -148,4 +163,5 @@ function App() {
 }
 
 export default App;
+
 

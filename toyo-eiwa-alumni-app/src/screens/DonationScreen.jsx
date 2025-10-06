@@ -52,14 +52,14 @@ const DonationScreen = () => {
         {/* Introduction */}
         <div className="bg-white rounded-lg p-4 card-shadow mb-6">
           <div className="flex items-center mb-4">
-            <Heart size={24} className="text-wine-red mr-3" />
+            <Heart size={24} className="text-[#1976D2] mr-3" />
             <h2 className="text-lg font-mincho font-semibold text-gray-900">
-              東洋英和女学院への寄付
+              岩手県立遠野高等学校同窓会への寄付
             </h2>
           </div>
           <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            東洋英和女学院は、創立以来140年以上にわたり、キリスト教精神に基づく女子教育を実践してまいりました。
-            皆様からのご寄付は、より良い教育環境の整備と、次世代を担う女性の育成に活用させていただきます。
+            岩手県立遠野高等学校同窓会は、創立以来多くの卒業生を輩出し、地域社会の発展に貢献してまいりました。
+            皆様からのご寄付は、母校の発展と同窓生の絆を深める活動に活用させていただきます。
           </p>
           <p className="text-sm text-gray-700 leading-relaxed">
             温かいご支援を心よりお願い申し上げます。
@@ -167,7 +167,7 @@ const DonationScreen = () => {
             税制上の優遇措置について
           </h3>
           <p className="text-sm text-blue-700 leading-relaxed mb-2">
-            東洋英和女学院への寄付金は、所得税法上の寄付金控除の対象となります。
+            岩手県立遠野高等学校同窓会への寄付金は、所得税法上の寄付金控除の対象となります。
           </p>
           <p className="text-sm text-blue-700 leading-relaxed">
             確定申告の際に寄付金受領証明書をご提出いただくことで、税制上の優遇を受けることができます。
@@ -176,26 +176,26 @@ const DonationScreen = () => {
 
         {/* Contact Information */}
         <div className="bg-white rounded-lg p-4 card-shadow">
-          <h3 className="text-lg font-mincho font-semibold wine-red mb-4">
+          <h3 className="text-lg font-mincho font-semibold text-[#1976D2] mb-4">
             お問い合わせ
           </h3>
           <div className="space-y-3">
             <div className="flex items-center">
-              <Building size={16} className="text-wine-red mr-3 flex-shrink-0" />
+              <Building size={16} className="text-[#1976D2] mr-3 flex-shrink-0" />
               <div>
-                <p className="text-sm font-medium text-gray-900">東洋英和女学院 募金事務局</p>
+                <p className="text-sm font-medium text-gray-900">岩手県立遠野高等学校同窓会 募金事務局</p>
               </div>
             </div>
             <div className="flex items-center">
-              <Phone size={16} className="text-wine-red mr-3 flex-shrink-0" />
+              <Phone size={16} className="text-[#1976D2] mr-3 flex-shrink-0" />
               <p className="text-sm text-gray-700">03-3400-0000</p>
             </div>
             <div className="flex items-center">
-              <Mail size={16} className="text-wine-red mr-3 flex-shrink-0" />
+              <Mail size={16} className="text-[#1976D2] mr-3 flex-shrink-0" />
               <p className="text-sm text-gray-700">donation@toyoeiwa.ac.jp</p>
             </div>
             <div className="flex items-start">
-              <ExternalLink size={16} className="text-wine-red mr-3 flex-shrink-0 mt-0.5" />
+              <ExternalLink size={16} className="text-[#1976D2] mr-3 flex-shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm text-gray-700">受付時間：平日 9:00～17:00</p>
                 <p className="text-sm text-gray-700">（土日祝日を除く）</p>

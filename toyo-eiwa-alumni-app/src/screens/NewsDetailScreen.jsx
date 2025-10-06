@@ -308,11 +308,11 @@ const NewsDetailScreen = ({ newsItem, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-end">
-      <div className="bg-white w-full max-w-md mx-auto rounded-t-lg max-h-[90vh] overflow-y-auto slide-up-enter slide-up-enter-active">
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div className="bg-white w-full max-w-md mx-auto rounded-lg max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-4 py-3 rounded-t-lg">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-mincho font-semibold wine-red">
+            <h2 className="text-lg font-mincho font-semibold text-[#1976D2]">
               {isGreeting ? 'ご挨拶' : isAlumniEvent ? 'イベント詳細' : 'イベント詳細'}
             </h2>
             <button
@@ -324,7 +324,7 @@ const NewsDetailScreen = ({ newsItem, onClose }) => {
           </div>
         </div>
 
-        {(isGreeting || isSoccerCaptainMessage || isChattanoogaReport) ? renderGreetingContent() : 
+        {(isGreeting || isSoccerCaptainMessage || isChattanoogaReport) ? renderGreetingContent() :
          isAlumniEvent ? renderAlumniEventContent() : renderEventContent()}
       </div>
     </div>

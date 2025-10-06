@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Users, Trophy, GraduationCap, BookOpen } from 'lucide-react';
+import { ChevronRight, Users, Trophy, GraduationCap, BookOpen, Megaphone } from 'lucide-react';
 import skyCrossImg from '../assets/sky-cross.jpg';
 import chapelCrossImg from '../assets/chapel-cross.jpg';
 import schoolBuildingImg from '../assets/school-building.jpg';
 import principalSpeechImg from '../assets/principal-speech.jpg';
 import chairmanMeetingImg from '../assets/chairman-meeting.jpg';
-import tonoGraduationImg from '../assets/tono-graduation.jpg';
 import presidentPhotoImg from '../assets/president-photo.png';
 
 const HomeScreen = ({ onNavigate }) => {
@@ -70,11 +69,18 @@ const HomeScreen = ({ onNavigate }) => {
   ];
 
   const shortcutButtons = [
+    { id: 'ads', title: '広告ページ', icon: Megaphone },
     { id: 'alumni-activities', title: '同窓会活動', icon: Users },
     { id: 'club-reports', title: '部活動報告', icon: Trophy },
     { id: 'career-overview', title: '進路概要', icon: GraduationCap },
     { id: 'newsletter-archive', title: '過去の会報バックナンバー', icon: BookOpen }
   ];
+
+  const featuredAd = {
+    title: '広告ギャラリー公開中',
+    description: '同窓会向けのおすすめ情報をひとつに集めました。スワイプで順番にチェックできます。',
+    tag: 'NEW',
+  };
 
   const alumniTopics = [
     {
@@ -134,6 +140,30 @@ const HomeScreen = ({ onNavigate }) => {
       </div>
 
       <div className="px-4 py-6 space-y-6">
+        {/* Advertisement Promo */}
+        <section>
+          <button
+            onClick={() => onNavigate('ads')}
+            className="w-full text-left"
+          >
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1976D2] via-[#1a8de4] to-[#42a5f5] text-white p-5 shadow-lg transition-transform duration-200 hover:scale-[1.01]">
+              <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-gothic tracking-wide">
+                {featuredAd.tag}
+              </span>
+              <h2 className="mt-3 text-xl font-mincho font-semibold">
+                {featuredAd.title}
+              </h2>
+              <p className="mt-2 text-sm text-white/90 font-gothic leading-relaxed">
+                {featuredAd.description}
+              </p>
+              <div className="mt-4 inline-flex items-center text-sm font-medium text-white">
+                すぐに見る
+                <ChevronRight size={16} className="ml-1" />
+              </div>
+            </div>
+          </button>
+        </section>
+
         {/* News Section */}
         <section>
           <div className="flex items-center justify-between mb-4">
@@ -194,7 +224,7 @@ const HomeScreen = ({ onNavigate }) => {
                   className="bg-[#1976D2] text-white rounded-xl p-4 h-[100px] flex flex-col items-center justify-center space-y-2 hover:bg-[#1565C0] transition-colors shadow-md"
                 >
                   <IconComponent className="w-8 h-8" strokeWidth={2} />
-                  <span className="font-gothic text-xs font-medium text-center leading-tight">
+                  <span className="font-gothic text-xs font-medium text-center leading-tight whitespace-nowrap">
                     {button.title}
                   </span>
                 </button>
