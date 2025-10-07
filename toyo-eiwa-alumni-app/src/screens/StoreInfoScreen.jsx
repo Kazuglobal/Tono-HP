@@ -87,7 +87,7 @@ const SwipeCard = ({ store, isTop, stackPosition, stackSize, onSwipe }) => {
       <div className="relative h-48 w-full overflow-hidden rounded-2xl">
         <img src={store.image} alt={store.name} className="h-full w-full object-cover" />
         {store.category && (
-          <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 backdrop-blur-sm">
+          <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 backdrop-blur-sm">
             {store.category}
           </span>
         )}

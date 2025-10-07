@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, Users, Trophy, GraduationCap, BookOpen, Megaphone } from 'lucide-react';
+import { ChevronRight, Users, Trophy, GraduationCap, BookOpen, Megaphone, Image } from 'lucide-react';
 import skyCrossImg from '../assets/sky-cross.jpg';
 import chapelCrossImg from '../assets/chapel-cross.jpg';
 import schoolBuildingImg from '../assets/school-building.jpg';
@@ -11,61 +11,29 @@ const HomeScreen = ({ onNavigate }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
-    {
-      id: 1,
-      image: skyCrossImg,
-      alt: '空と十字架'
-    },
-    {
-      id: 2,
-      image: chapelCrossImg,
-      alt: '礼拝堂'
-    },
-    {
-      id: 3,
-      image: schoolBuildingImg,
-      alt: '校舎'
-    }
+    { id: 1, image: skyCrossImg, alt: '本館と青空' },
+    { id: 2, image: chapelCrossImg, alt: 'チャペルの十字架' },
+    { id: 3, image: schoolBuildingImg, alt: '校舎全景' }
   ];
 
   const newsItems = [
     {
       id: 1,
-      title: '2024年度同窓会総会のお知らせ',
+      title: '2024年度 同窓会総会のお知らせ',
       date: '2024年03月15日',
       category: 'イベント',
       image: chairmanMeetingImg,
       eventDetails: {
-        eventDate: '2024年4月15日（土）14:00-17:00',
-        location: '遠野市民会館',
+        eventDate: '2024年4月15日（月）14:00〜17:00',
+        location: '東京校舎 講堂',
         deadline: '2024年4月8日（月）',
-        description: '平素より本学院の教育活動にご理解とご協力を賜り、誠にありがとうございます。\n\n来る4月15日（土）に、2024年度同窓会総会を開催いたします。今年度は「つながり～過去から未来へ～」をテーマに、多くの卒業生の皆様にお集まりいただき、学院の現状報告や今後の展望についてお話しさせていただく予定です。\n\nまた、総会終了後には懇親会も予定しておりますので、久しぶりに同窓生の皆様と旧交を温めていただければ幸いと思います。'
+        description: '2024年度同窓会総会を4月15日に開催します。今年のテーマは「つながる・広がる・挑戦する」。最新の活動報告と交流企画をご用意していますので、ぜひご参加ください。'
       }
     },
-    {
-      id: 2,
-      title: '「感謝を力に変えて全力で。」サッカー部 県総体連覇',
-      date: '2024年06月10日',
-      image: '/api/placeholder/300/200'
-    },
-    {
-      id: 3,
-      title: '海外事業報告「チャタヌーガ研修に参加して」',
-      date: '2024年01月15日',
-      image: '/api/placeholder/300/200'
-    },
-    {
-      id: 4,
-      title: '同窓会会長挨拶',
-      date: '2024年03月20日',
-      image: presidentPhotoImg
-    },
-    {
-      id: 5,
-      title: '校長挨拶',
-      date: '2024年03月18日',
-      image: principalSpeechImg
-    }
+    { id: 2, title: '卒業30周年記念パーティー開催レポート', date: '2024年06月10日', image: '/api/placeholder/300/200' },
+    { id: 3, title: 'キャリア支援セミナー 参加者募集', date: '2024年01月15日', image: '/api/placeholder/300/200' },
+    { id: 4, title: '同窓会長からのメッセージ', date: '2024年03月20日', image: presidentPhotoImg },
+    { id: 5, title: '在校生からの近況報告', date: '2024年03月18日', image: principalSpeechImg }
   ];
 
   const shortcutButtons = [
@@ -73,28 +41,19 @@ const HomeScreen = ({ onNavigate }) => {
     { id: 'alumni-activities', title: '同窓会活動', icon: Users },
     { id: 'club-reports', title: '部活動報告', icon: Trophy },
     { id: 'career-overview', title: '進路概要', icon: GraduationCap },
-    { id: 'newsletter-archive', title: '過去の会報バックナンバー', icon: BookOpen }
+    { id: 'newsletter-archive', title: '過去の会報バックナンバー', icon: BookOpen },
+    { id: 'memory-corner', title: '思い出コーナー', icon: Image }
   ];
 
   const featuredAd = {
     title: '広告ギャラリー公開中',
-    description: '同窓会向けのおすすめ情報をひとつに集めました。スワイプで順番にチェックできます。',
+    description: '同窓会の皆さま向けの最新広告をまとめました。スワイプで次の広告をチェックできます。',
     tag: 'NEW',
   };
 
   const alumniTopics = [
-    {
-      id: 1,
-      title: '卒業生起業家インタビュー',
-      date: '2024年03月12日',
-      image: '/api/placeholder/60/60'
-    },
-    {
-      id: 2,
-      title: '遠野の魅力を世界に発信',
-      date: '2024年03月08日',
-      image: '/api/placeholder/60/60'
-    }
+    { id: 1, title: '卒業生ネットワークインタビュー', date: '2024年03月12日', image: '/api/placeholder/60/60' },
+    { id: 2, title: '春の交流会レポート', date: '2024年03月08日', image: '/api/placeholder/60/60' }
   ];
 
   // Auto-slide functionality
