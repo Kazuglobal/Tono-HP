@@ -88,14 +88,17 @@ const SwipeCard = ({ profile, isTop, stackPosition, stackSize, onSwipe, onOpenDe
     >
       <div className="relative h-48 w-full overflow-hidden rounded-2xl">
         <img src={profile.image} alt={profile.name} className="h-full w-full object-cover" />
-        {profile.jobType && (
-          <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 backdrop-blur-sm">
-            {profile.jobType}
-          </span>
-        )}
       </div>
 
       <div className="flex flex-col gap-3">
+        {profile.jobType && (
+          <div className="flex">
+            <span className="inline-flex items-center rounded-full bg-[#E8F1FB] px-3 py-1 text-xs font-medium text-[#1976D2]">
+              {profile.jobType}
+            </span>
+          </div>
+        )}
+
         {profile.headline && (
           <p className="text-xs font-semibold text-[#D81B60] leading-snug">{profile.headline}</p>
         )}

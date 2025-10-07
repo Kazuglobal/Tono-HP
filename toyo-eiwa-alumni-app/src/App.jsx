@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Layout from './components/Layout';
 import TabBar from './components/TabBar';
 import HomeScreen from './screens/HomeScreen';
@@ -32,6 +32,34 @@ function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [navigationStack, setNavigationStack] = useState([]);
 
+  const audioRef = useRef(null);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio("/audio/ambient.mp3");
+    audio.loop = true;
+    audio.volume = 0.6;
+    audioRef.current = audio;
+
+    const attemptPlayback = async () => {
+      try {
+        await audio.play();
+        setIsAudioPlaying(true);
+        setAutoplayBlocked(false);
+      } catch (error) {
+        setAutoplayBlocked(true);
+      }
+    };
+
+    attemptPlayback();
+
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, []);
+
   const handleTabChange = (tabId) => {
     setActiveTab(tabId);
     setNavigationStack([]); // Clear navigation stack when switching tabs
@@ -46,6 +74,28 @@ function App() {
       const newStack = [...navigationStack];
       newStack.pop();
       setNavigationStack(newStack);
+    }
+  };
+
+  const handleToggleAudio = async () => {
+    const audio = audioRef.current;
+    if (!audio) {
+      return;
+    }
+
+    if (isAudioPlaying) {
+      audio.pause();
+      audio.currentTime = 0;
+      setIsAudioPlaying(false);
+      return;
+    }
+
+    try {
+      await audio.play();
+      setIsAudioPlaying(true);
+      setAutoplayBlocked(false);
+    } catch (error) {
+      setAutoplayBlocked(true);
     }
   };
 
@@ -143,6 +193,23 @@ function App() {
 
   return (
     <div className="min-h-screen bg-off-white">
+      <div className="fixed bottom-24 left-1/2 z-50 flex w-full max-w-md -translate-x-1/2 justify-center px-4">
+        <div className="flex w-full flex-col items-center space-y-2">
+          {autoplayBlocked && !isAudioPlaying && (
+            <span className="rounded-2xl bg-white/95 px-3 py-2 text-[11px] font-gothic text-gray-600 shadow-lg">
+              校歌が止まっている場合はボタンを押してください。
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={handleToggleAudio}
+            className="flex items-center gap-2 rounded-full bg-[#1976D2] px-5 py-3 text-sm font-semibold text-white shadow-lg transition active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1976D2]"
+          >
+            {isAudioPlaying ? "校歌を止める" : "校歌を再生する"}
+          </button>
+        </div>
+      </div>
+
       <Layout
         showBackButton={navigationStack.length > 0 && navigationStack[navigationStack.length - 1].route !== 'news-detail'}
         onBackClick={handleBackClick}
