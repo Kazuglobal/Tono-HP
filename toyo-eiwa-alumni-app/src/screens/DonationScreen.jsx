@@ -161,19 +161,6 @@ const DonationScreen = () => {
           </div>
         </div>
 
-        {/* Tax Benefits */}
-        <div className="bg-blue-50 rounded-lg p-4 mb-6">
-          <h3 className="text-lg font-mincho font-semibold text-blue-800 mb-3">
-            税制上の優遇措置について
-          </h3>
-          <p className="text-sm text-blue-700 leading-relaxed mb-2">
-            岩手県立遠野高等学校同窓会への寄付金は、所得税法上の寄付金控除の対象となります。
-          </p>
-          <p className="text-sm text-blue-700 leading-relaxed">
-            確定申告の際に寄付金受領証明書をご提出いただくことで、税制上の優遇を受けることができます。
-          </p>
-        </div>
-
         {/* Contact Information */}
         <div className="bg-white rounded-lg p-4 card-shadow">
           <h3 className="text-lg font-mincho font-semibold text-[#1976D2] mb-4">
