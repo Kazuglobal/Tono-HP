@@ -37,12 +37,12 @@ const HomeScreen = ({ onNavigate }) => {
   ];
 
   const shortcutButtons = [
-    { id: 'ads', title: '広告ページ', icon: Megaphone },
-    { id: 'alumni-activities', title: '同窓会活動', icon: Users },
-    { id: 'club-reports', title: '部活動報告', icon: Trophy },
-    { id: 'career-overview', title: '進路概要', icon: GraduationCap },
-    { id: 'newsletter-archive', title: '過去の会報バックナンバー', icon: BookOpen },
-    { id: 'memory-corner', title: '思い出コーナー', icon: Image }
+    { id: 'ads', title: '広告ページ', icon: Megaphone, bgColor: 'from-[#FDE68A] to-[#FCD34D]', iconBg: 'bg-white' },
+    { id: 'alumni-activities', title: '同窓会活動', icon: Users, bgColor: 'from-[#BFDBFE] to-[#93C5FD]', iconBg: 'bg-white' },
+    { id: 'club-reports', title: '部活動報告', icon: Trophy, bgColor: 'from-[#FBCFE8] to-[#F9A8D4]', iconBg: 'bg-white' },
+    { id: 'career-overview', title: '進路概要', icon: GraduationCap, bgColor: 'from-[#BAE6FD] to-[#7DD3FC]', iconBg: 'bg-white' },
+    { id: 'newsletter-archive', title: '過去の会報バックナンバー', icon: BookOpen, bgColor: 'from-[#BBF7D0] to-[#86EFAC]', iconBg: 'bg-white' },
+    { id: 'memory-corner', title: '思い出コーナー', icon: Image, bgColor: 'from-[#E9D5FF] to-[#D8B4FE]', iconBg: 'bg-white' }
   ];
 
   const featuredAd = {
@@ -105,18 +105,18 @@ const HomeScreen = ({ onNavigate }) => {
             onClick={() => onNavigate('ads')}
             className="w-full text-left"
           >
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1976D2] via-[#1a8de4] to-[#42a5f5] text-white p-5 shadow-lg transition-transform duration-200 hover:scale-[1.01]">
-              <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-gothic tracking-wide">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 p-6 shadow-md transition-transform duration-200 hover:scale-[1.01]">
+              <span className="inline-flex items-center rounded-md bg-pink-500 px-3 py-1 text-xs font-bold text-white tracking-wide">
                 {featuredAd.tag}
               </span>
-              <h2 className="mt-3 text-xl font-mincho font-semibold">
+              <h2 className="mt-3 text-2xl font-bold text-gray-900">
                 {featuredAd.title}
               </h2>
-              <p className="mt-2 text-sm text-white/90 font-gothic leading-relaxed">
+              <p className="mt-2 text-sm text-gray-700 font-gothic leading-relaxed">
                 {featuredAd.description}
               </p>
-              <div className="mt-4 inline-flex items-center text-sm font-medium text-white">
-                すぐに見る
+              <div className="mt-4 inline-flex items-center text-sm font-medium text-blue-600">
+                詳細を見る
                 <ChevronRight size={16} className="ml-1" />
               </div>
             </div>
@@ -173,17 +173,20 @@ const HomeScreen = ({ onNavigate }) => {
 
         {/* Shortcut Buttons */}
         <section>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {shortcutButtons.map((button) => {
               const IconComponent = button.icon;
               return (
                 <button
                   key={button.id}
                   onClick={() => onNavigate(button.id)}
-                  className="bg-[#1976D2] text-white rounded-xl p-4 h-[100px] flex flex-col items-center justify-center space-y-2 hover:bg-[#1565C0] transition-colors shadow-md"
+                  className="relative bg-white rounded-2xl p-4 h-[120px] flex flex-col items-start justify-between shadow-sm hover:shadow-md transition-all overflow-hidden"
                 >
-                  <IconComponent className="w-8 h-8" strokeWidth={2} />
-                  <span className="font-gothic text-xs font-medium text-center leading-tight whitespace-nowrap">
+                  <div className={`absolute top-4 right-4 w-20 h-20 rounded-full bg-gradient-to-br ${button.bgColor} opacity-80`} />
+                  <div className="relative z-10 w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                    <IconComponent className="w-5 h-5 text-blue-600" strokeWidth={2} />
+                  </div>
+                  <span className="relative z-10 font-gothic text-xs font-medium text-gray-900 leading-tight">
                     {button.title}
                   </span>
                 </button>
